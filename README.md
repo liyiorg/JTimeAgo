@@ -10,7 +10,8 @@ Jsp Tag support.
         String time = jTimeAgo.getTimeAgo(date);
 
 ## Jsp Tag usage
-<%@ taglib uri="/JTimeAgo" prefix="JTimeAgo"%>
+
+        <%@ taglib uri="/JTimeAgo" prefix="JTimeAgo"%>
 
 ### second
 
