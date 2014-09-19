@@ -13,15 +13,18 @@ Jsp Tag support.
 <%@ taglib uri="/JTimeAgo" prefix="JTimeAgo"%>
 
 ### second
-<JTimeAgo:ago time="1394606114"/>
+
+        <JTimeAgo:ago time="1394606114"/>
 
 ### millisecond
-<JTimeAgo:ago time="1394606114000"/>
+
+        <JTimeAgo:ago time="1394606114000"/>
 
 ### date
-<jsp:useBean id="dateValue" class="java.util.Date"/>
-<jsp:setProperty name="dateValue" property="time" value="1394606114000" />
-<JTimeAgo:ago date="${dateValue}"/>
+
+        <jsp:useBean id="dateValue" class="java.util.Date"/>
+        <jsp:setProperty name="dateValue" property="time" value="1394606114000" />
+        <JTimeAgo:ago date="${dateValue}"/>
 
 
 
