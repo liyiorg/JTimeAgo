@@ -1,36 +1,28 @@
 ## JTimeAgo - description
 
-Java library based on Objective-clibrary 
-
-https://github.com/kevinlawler/NSDate-TimeAgo
-
-It can be used everywhere where java is available. 
+A java time ago tool.
+Jsp Tag support.
 
 ## Sample usage
 
-JTimeAgo extends java.util.Date class.
-
-if you got date stored in Data object You can simply wrap it :
-
+        JTimeAgo jTimeAgo = new JTimeAgo();
         Date date = Calendar.getInstance().getTime();
-        JTimeAgo jTimeAgo = new JTimeAgo(date);
+        String time = jTimeAgo.getTimeAgo(date);
 
-and thats all you need, then you have to call a following method:  
+## Jsp Tag usage
+<%@ taglib uri="/JTimeAgo" prefix="JTimeAgo"%>
 
-        String time = jTimeAgo.getTimeAgo(); 
+### second
+<JTimeAgo:ago time="1394606114"/>
+
+### millisecond
+<JTimeAgo:ago time="1394606114000"/>
+
+### date
+<jsp:useBean id="dateValue" class="java.util.Date"/>
+<jsp:setProperty name="dateValue" property="time" value="1394606114000" />
+<JTimeAgo:ago date="${dateValue}"/>
 
 
 
-## Language support 
 
-
-For now English and Polish are only supported languages. 
-English is set as default
-If you want to change language you can do it using provided constructor: 
-
-        JTimeAgo jTimeAgo = new JTimeAgo(LanguageType.EN);
-        JTimeAgo jTimeAgo = new JTimeAgo(new Date(), LanguageType.EN); 
-
-or by calling 
-
-        jTimeAgo.setLanguage(LanguageType.EN);

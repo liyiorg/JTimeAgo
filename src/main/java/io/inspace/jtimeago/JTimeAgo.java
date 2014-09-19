@@ -1,8 +1,5 @@
 package io.inspace.jtimeago;
 
-import io.inspace.jtimeago.languages.LanguageFactory;
-import io.inspace.jtimeago.languages.LanguageType;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -13,29 +10,19 @@ import java.util.concurrent.TimeUnit;
  * Class that extends standard java.util.Date class and returns
  * usable string dates like "3 days ago" , "3 minutes ago" etc.
  */
-public class JTimeAgo extends Date {
+public class JTimeAgo {
 
   private Locale locale;
   private ResourceBundle resourceBundle;
 
   public JTimeAgo() {
-    locale = LanguageFactory.getLanguage(LanguageType.EN);
+    locale = Locale.getDefault();
     resourceBundle = ResourceBundle.getBundle("Language", locale);
   }
 
-  public JTimeAgo(LanguageType languageType) {
-    locale = LanguageFactory.getLanguage(languageType);
+  public JTimeAgo(Locale locale) {
+    this.locale = locale;
     resourceBundle = ResourceBundle.getBundle("Language", locale);
-  }
-
-  public JTimeAgo(Date date) {
-    this();
-    this.setTime(date.getTime());
-  }
-
-  public JTimeAgo(Date date, LanguageType languageType) {
-    this(languageType);
-    this.setTime(date.getTime());
   }
 
   /**
@@ -44,9 +31,9 @@ public class JTimeAgo extends Date {
    *
    * @return - present time
    */
-  public String getTimeAgoSimple() {
+  public String getTimeAgoSimple(Date date) {
     Date now = Calendar.getInstance().getTime();
-    long deltaMillis = intervalInMillis(this, now);
+    long deltaMillis = intervalInMillis(date, now);
     long deltaSeconds = TimeUnit.MILLISECONDS.toSeconds(deltaMillis);
     long deltaMinutes = TimeUnit.MILLISECONDS.toMinutes(deltaMillis);
     if (deltaSeconds < 60) {
@@ -71,9 +58,9 @@ public class JTimeAgo extends Date {
    *
    * @return
    */
-  public String getTimeAgo() {
+  public String getTimeAgo(Date date) {
     Date now = Calendar.getInstance().getTime();
-    long deltaMillis = intervalInMillis(this, now);
+    long deltaMillis = intervalInMillis(date, now);
     long deltaSeconds = TimeUnit.MILLISECONDS.toSeconds(deltaMillis);
     long deltaMinutes = TimeUnit.MILLISECONDS.toMinutes(deltaMillis);
     if (deltaSeconds < 5) {
@@ -112,10 +99,6 @@ public class JTimeAgo extends Date {
 
   private long intervalInMillis(Date first, Date second) {
     return Math.abs(first.getTime() - second.getTime());
-  }
-
-  public void setLanguage(LanguageType languageType) {
-    locale = LanguageFactory.getLanguage(languageType);
   }
 
   private String getMessage(String key){
