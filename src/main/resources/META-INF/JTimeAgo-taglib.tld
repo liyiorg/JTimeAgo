@@ -16,10 +16,10 @@
   limitations under the License.
 -->
 
-<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
-    version="2.0">
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
     <description>JTimeAgo SimpleTag handlers.</description>
     <tlib-version>1.0</tlib-version>
     <short-name>JTimeAgo</short-name>
@@ -28,7 +28,7 @@
 	<description></description>
     <name>ago</name>
 	<tag-class>io.inspace.jtimeago.JTimeAgoJspTag</tag-class>
-	<body-content>empty</body-content>
+	<body-content>scriptless</body-content>
 	 	<attribute>
             <name>time</name>
             <required>false</required>
@@ -36,6 +36,8 @@
         <attribute>
             <name>date</name>
             <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.util.Date</type>
         </attribute>
     </tag>
 </taglib>
